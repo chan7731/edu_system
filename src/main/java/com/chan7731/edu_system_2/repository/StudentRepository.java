@@ -23,11 +23,19 @@ public class StudentRepository {
             .build();
 
     public List<Student> findAll() {
-        String sql = "SELECT s.id, s.name, s.score, s.teacher_id, t.name AS teacher_name" +
+        String sql = "SELECT s.id, s.name, s.score, s.teacher_id, t.name AS teacher_name " +
                 "FROM student s LEFT JOIN teacher t ON s.teacher_id = t.id " +
                 "ORDER BY s.id";
 
         return jdbcTemplate.query(sql, mapper);
+    }
+
+    public Student findById(int id) {
+        String sql = "SELECT s.id, s.name, s.score, s.teacher_id, t.name AS teacher_name " +
+                "FROM student s LEFT JOIN teacher t ON s.teacher_id = t.id " +
+                "WHERE s.id = ?";
+
+        return jdbcTemplate.queryForObject(sql, mapper, id);
     }
 
     public int save(Student student) {
@@ -35,5 +43,16 @@ public class StudentRepository {
                 "INSERT INTO student (name, score, teacher_id) VALUES (?, ?, ?)",
                 student.getName(), student.getScore(), student.getTeacherId()
         );
+    }
+
+    public int update(Student student) {
+        return jdbcTemplate.update(
+                "UPDATE student SET name = ?, score = ?, teacher_id = ? WHERE id = ?",
+                student.getName(), student.getScore(), student.getTeacherId(), student.getId()
+        );
+    }
+
+    public int deleteById(int id) {
+        return jdbcTemplate.update("DELETE FROM student WHERE id = ?", id);
     }
 }

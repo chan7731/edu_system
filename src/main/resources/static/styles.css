@@ -4,7 +4,7 @@ body {
   padding: 20px;
   font-family: 'Helvetica Neue', Arial, sans-serif;
   background-color: #FFF8F0; /* 연한 베이지 */
-  color: #5A4E4D;            /* 부드러운 브라운 */
+  color: #000000;          /* 부드러운 브라운 */
 }
 
 /* 컨테이너 */
@@ -18,7 +18,7 @@ h1 {
   text-align: center;
   margin-bottom: 24px;
   font-size: 2rem;
-  color: #A27B5C; /* 파스텔 브라운 */
+  color: #61cfdf /* 파스텔 브라운 */
 }
 
 /* 내비게이션 링크 */
